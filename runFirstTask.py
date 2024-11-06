@@ -23,17 +23,17 @@ def calculate_sum(data):
     sum = 0
     number_pattern = re.compile(r'[0-9]+')
 
-    for row, line in enumerate(data):
+    for row_idx, line in enumerate(data):
         for match in number_pattern.finditer(line):
             start_idx = match.start()
             end_idx = match.end()
             number = match.group()
 
             for x in range(start_idx, end_idx):
-                adjacent_chars = get_adjacent(data, row, x)
+                adjacent_chars = get_adjacent(data, row_idx, x)
                 for char in adjacent_chars:
                     if not char.isdigit() and char != '.' and char != '\n':
-                        print(f"Line {row + 1}: Found number {number}")
+                        print(f"Line {row_idx + 1}: Found number {number}")
                         sum += int(number)
                         break
                 else:
